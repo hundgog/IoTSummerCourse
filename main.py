@@ -30,7 +30,7 @@ AIO_TEMPERATURE_FEED = "YourSecondFeedName"
 def sub_cb(topic, msg):          # sub_cb means "callback subroutine"
     print((topic, msg))          # Outputs the message that was received. Debugging use.
 
-def send_random():
+def send_data():
     global last_random_sent_ticks
     global RANDOMS_INTERVAL
 
@@ -70,7 +70,7 @@ try:                      # Code between try: and finally: may cause an error
         print('Temperature: %3.1f C' %temp)
         print('Humidity: %3.1f %%' %hum)           # Repeat this loop forever
         client.check_msg()# Action a message if one is received. Non-blocking.
-        send_random()     # Send a random number to Adafruit IO if it's time.
+        send_data()     # Send a random number to Adafruit IO if it's time.
 finally:                  # If an exception is thrown ...
     client.disconnect()   # ... disconnect the client and clean up.
     client = None
