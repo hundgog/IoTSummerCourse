@@ -4,13 +4,10 @@ import dht
 
 sensor = dht.DHT11(Pin(14))
 
-# from network import WLAN      # For operation of WiFi network
 import time                   # Allows use of time.sleep() for delays
-# import pycom                  # Base library for Pycom devices
 from mqtt import MQTTClient  # For use of MQTT protocol to talk to Adafruit IO
 import ubinascii              # Needed to run any MicroPython code
 import machine                # Interfaces with hardware components
-# import micropython            # Needed to run any MicroPython code
 import random
 
 # BEGIN SETTINGS
@@ -61,7 +58,6 @@ client.connect()
 client.subscribe(AIO_TEMPERATURE_FEED)
 print("Connected to %s, subscribed to %s topic" % (AIO_SERVER, AIO_TEMPERATURE_FEED))
 
-# pycom.rgbled(0x00ff00) # Status green: online to Adafruit IO
 
 try:                      # Code between try: and finally: may cause an error
                           # so ensure the client disconnects the server if
@@ -78,7 +74,4 @@ try:                      # Code between try: and finally: may cause an error
 finally:                  # If an exception is thrown ...
     client.disconnect()   # ... disconnect the client and clean up.
     client = None
-    # wlan.disconnect()
-    # wlan = None
-    # pycom.rgbled(0x000022)# Status blue: stopped
     print("Disconnected from Adafruit IO.")
